@@ -1,65 +1,17 @@
-# insert-file README
+# insert-file
 
-This is the README for your extension "insert-file". After writing up a brief description, we recommend including the following sections.
+This extension replaces selected file name with its file content either in plain or BASE64 encoded form.
 
-## Features
+## Instruction(s)
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+After selecting file name, open context menu (right-click) and select "Replace File Name with File Content" or its variants.
 
-For example if there is an image subfolder under your extension project workspace:
+The following image illustrates a very easy way to create `data:` URL from a PNG image file:
 
-\!\[feature X\]\(images/feature-x.png\)
+![](https://raw.githubusercontent.com/espresso3389/insert-file/master/images/intro.gif)
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## GitHub URL
+https://github.com/espresso3389/insert-file
 
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## Marketplace URL
+https://marketplace.visualstudio.com/items?itemName=espresso3389.insert-file

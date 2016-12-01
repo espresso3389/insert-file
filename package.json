@@ -1,7 +1,7 @@
 {
   "name": "insert-file",
   "displayName": "insert-file",
-  "description": "Insert file on the current text editor in plain/base64/uuencode.",
+  "description": "Insert file on the current text editor in plain/base64.",
   "version": "0.0.1",
   "publisher": "espresso3389",
   "engines": {
@@ -24,14 +24,43 @@
     "url": "https://github.com/espresso3389/insert-file.git"
   },
   "activationEvents": [
-    "onCommand:extension.sayHello"
+    "onCommand:extension.replaceFileNameWithItsContent",
+    "onCommand:extension.replaceFileNameWithItsContentBase64"
   ],
   "main": "./out/src/extension",
   "contributes": {
     "commands": [{
-      "command": "extension.sayHello",
-      "title": "Hello World"
-    }]
+      "command": "extension.replaceFileNameWithItsContent",
+      "title": "Replace File Name with File Content"
+    },
+    {
+      "command": "extension.replaceFileNameWithItsContentBase64",
+      "title": "Replace File Name with File Content (BASE64)"
+    }],
+    "menus": {
+        "editor/context": [{
+          "when": "editorHasSelection",
+          "command": "extension.replaceFileNameWithItsContent",
+          "group": "8_filecontent"
+        },
+        {
+          "when": "editorHasSelection",
+          "command": "extension.replaceFileNameWithItsContentBase64",
+          "group": "8_filecontent"
+        }]
+    },
+    "configuration": {
+      "type": "object",
+      "title": "espresso3389.insert-file configuration",
+            
+            "properties": {
+                "espresso3389.insert-file.encoding": {
+                "type": "string",
+                "default": "utf-8",
+                "description": "Encoding used when inserting file content"
+                }
+            }
+        }
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
