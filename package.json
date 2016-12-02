@@ -1,8 +1,8 @@
 {
   "name": "insert-file",
-  "displayName": "insert-file",
-  "description": "Insert file on the current text editor in plain/base64.",
-  "version": "0.0.1",
+  "displayName": "Replace File Name with...",
+  "description": "Replaces file Name with hash/file content...",
+  "version": "0.0.2",
   "publisher": "espresso3389",
   "engines": {
     "vscode": "^1.5.0"
@@ -11,8 +11,10 @@
     "Other"
   ],
   "keywords": [
-    "BASE64",
-    "data protocol"
+    "base64",
+    "hash",
+    "sha",
+    "path"
   ],
   "icon": "file.png",
   "license": "SEE LICENSE IN LICENSE.md",
@@ -25,43 +27,81 @@
     "url": "https://github.com/espresso3389/insert-file.git"
   },
   "activationEvents": [
-    "onCommand:extension.replaceFileNameWithItsContent",
-    "onCommand:extension.replaceFileNameWithItsContentBase64"
+    "onCommand:extension.replaceFileNameWithContent",
+    "onCommand:extension.replaceFileNameWithContentBase64",
+    "onCommand:extension.replaceFileNameWithSha256Hash",
+    "onCommand:extension.replaceFileNameWithSha1Hash",
+    "onCommand:extension.replaceFileNameWithMd5Hash",
+    "onCommand:extension.replaceFileNameWithFullPathName",
+    "onCommand:extension.replaceFileNameWithRelativePathName",
+    "onCommand:extension.replaceFileNameWithMimeType",
+    "onCommand:extension.replaceFileNameWithDataProtocol"
   ],
   "main": "./out/src/extension",
   "contributes": {
-    "commands": [{
-      "command": "extension.replaceFileNameWithItsContent",
-      "title": "Replace File Name with File Content"
-    },
-    {
-      "command": "extension.replaceFileNameWithItsContentBase64",
-      "title": "Replace File Name with File Content (BASE64)"
-    }],
+    "commands": [
+      {
+        "command": "extension.replaceFileNameWithContent",
+        "title": "Replace File Name with File Content"
+      },
+      {
+        "command": "extension.replaceFileNameWithContentBase64",
+        "title": "Replace File Name with File Content (BASE64)"
+      },
+      {
+        "command": "extension.replaceFileNameWithSha256Hash",
+        "title": "Replace File Name with SHA256 Hash"
+      },
+      {
+        "command": "extension.replaceFileNameWithSha1Hash",
+        "title": "Replace File Name with SHA1 Hash"
+      },
+      {
+        "command": "extension.replaceFileNameWithMd5Hash",
+        "title": "Replace File Name with MD5 Hash"
+      },
+      {
+        "command": "extension.replaceFileNameWithFullPathName",
+        "title": "Replace File Name with Absolute (Fully Qualified) Path Name"
+      },
+      {
+        "command": "extension.replaceFileNameWithRelativePathName",
+        "title": "Replace File Name with Relative Path Name"
+      },
+      {
+        "command": "extension.replaceFileNameWithMimeType",
+        "title": "Replace File Name with Mime-Type"
+      },
+      {
+        "command": "extension.replaceFileNameWithDataProtocol",
+        "title": "Replace File Name with data: (RFC 2397) Formatted Data"
+      }
+    ],
     "menus": {
-        "editor/context": [{
+      "editor/context": [
+        {
           "when": "editorHasSelection",
-          "command": "extension.replaceFileNameWithItsContent",
+          "command": "extension.replaceFileNameWithContent",
           "group": "8_filecontent"
         },
         {
           "when": "editorHasSelection",
-          "command": "extension.replaceFileNameWithItsContentBase64",
+          "command": "extension.replaceFileNameWithContentBase64",
           "group": "8_filecontent"
-        }]
+        }
+      ]
     },
     "configuration": {
       "type": "object",
       "title": "espresso3389.insert-file configuration",
-            
-            "properties": {
-                "espresso3389.insert-file.encoding": {
-                "type": "string",
-                "default": "utf-8",
-                "description": "Encoding used when inserting file content"
-                }
-            }
+      "properties": {
+        "espresso3389.insert-file.encoding": {
+          "type": "string",
+          "default": "utf-8",
+          "description": "Encoding used when inserting file content"
         }
+      }
+    }
   },
   "scripts": {
     "vscode:prepublish": "tsc -p ./",
@@ -74,5 +114,9 @@
     "mocha": "^3.2.0",
     "@types/node": "^0.0.2",
     "@types/mocha": "^2.2.33"
+  },
+  "dependencies": {
+    "mime-db": "^1.25.0",
+    "mime-type": "^3.0.4"
   }
 }

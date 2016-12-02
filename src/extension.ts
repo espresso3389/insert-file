@@ -1,6 +1,6 @@
 'use strict';
 import * as vscode from 'vscode';
-import * as fsi from './FileInserter';
+import * as fr from './FileReplacer';
 
 export function activate(context: vscode.ExtensionContext) {
 
@@ -10,14 +10,41 @@ export function activate(context: vscode.ExtensionContext) {
     }
     let commands: Commands[] = [
         {
-            id: 'extension.replaceFileNameWithItsContent',
-            command: context => fsi.FileInserter.insertFile(context, fsi.FileInsertionMode.Plain)
+            id: 'extension.replaceFileNameWithContent',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.Plain)
         },
         {
-            id: 'extension.replaceFileNameWithItsContentBase64',
-            command: context => fsi.FileInserter.insertFile(context, fsi.FileInsertionMode.Base64)
-        }
-    ];
+            id: 'extension.replaceFileNameWithContentBase64',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.Base64)
+        },
+        {
+            id: 'extension.replaceFileNameWithSha256Hash',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.Sha256)
+        },
+        {
+            id: 'extension.replaceFileNameWithSha1Hash',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.Sha1)
+        },
+        {
+            id: 'extension.replaceFileNameWithMd5Hash',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.Md5)
+        },
+        {
+            id: 'extension.replaceFileNameWithFullPathName',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.FullPath)
+        },
+        {
+            id: 'extension.replaceFileNameWithRelativePathName',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.RelativePath)
+        },
+        {
+            id: 'extension.replaceFileNameWithMimeType',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.MimeType)
+        },
+        {
+            id: 'extension.replaceFileNameWithDataProtocol',
+            command: context => fr.FileReplacer.replaceFileNameWith(context, fr.FileReplacerType.DataProtocol)
+        }];
 
     commands.forEach(cmd => {
         context.subscriptions.push(vscode.commands.registerCommand(cmd.id, cmd.command));
