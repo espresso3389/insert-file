@@ -1,9 +1,9 @@
 'use strict';
 
-import * as vscode from 'vscode';
-import * as path from 'path';
-import * as fs from 'fs';
 import * as crypto from 'crypto';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as vscode from 'vscode';
 
 let mime = require('mime-type/with-db');
 
@@ -75,10 +75,10 @@ export class FileReplacer
         return null;
     }
 
-    static getEncoding() : string {
+    static getEncoding() : BufferEncoding {
         let configuration = vscode.workspace.getConfiguration("espresso3389.insert-file");
         let setValue = configuration.get<string>("encoding");
-        return setValue != "" ? setValue : "utf-8";
+        return setValue != "" ? (setValue as BufferEncoding) : "utf-8";
     }
 
     static parseFileNameAndMakePretty(fileName: string, curDir: string) : string {
@@ -91,8 +91,7 @@ export class FileReplacer
 
     static conditionFileNameRange(selection: vscode.Selection, textEditor: vscode.TextEditor) : vscode.Range {
         let fileName = textEditor.document.getText(selection);
-        for (let i = 0; i < quotePairs.length; i++) {
-            let q = quotePairs[i];
+        for (const q of quotePairs) {
             if (fileName.startsWith(q[0]) && fileName.endsWith(q[1])) 
                 return FileReplacer.offsetRange(selection, q[0].length, -q[1].length, textEditor);
         }
