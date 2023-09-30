@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.2.0 (2023-09-30)
+
+- BREAKING CHANGE: Now relative path is relative to workspace root.
+
 ## 0.1.0 (2023-09-30)
 
 - Code update to work with latest VSCode installations.
